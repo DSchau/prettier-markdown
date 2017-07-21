@@ -4,7 +4,15 @@
 
 A simple utility and CLI to run [prettier][prettier] on code blocks within Markdown, leaving any non-code blocks untouched.
 
-Currently works on _both_ TypeScript and JavaScript snippets
+Currently works on the following languages (basically everything prettier supports!):
+
+- JavaScript
+- TypeScript
+- JSON
+- CSS
+- SASS
+- LESS
+- GraphQL
 
 ## Install
 
@@ -12,7 +20,7 @@ Currently works on _both_ TypeScript and JavaScript snippets
 yarn global add @dschau/prettier-markdown
 ```
 
-## Usage
+## Example
 
 For instance, given the following markdown snippet
 
@@ -62,6 +70,8 @@ export default function List({ items, className = "", children }) {
 }
 ```
 </pre>
+
+## Usage
 
 ### CLI
 
