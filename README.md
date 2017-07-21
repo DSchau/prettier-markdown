@@ -17,7 +17,7 @@ yarn global add @dschau/prettier-markdown
 Command line usage is simple. All options (besides `--dry`, which will not write files to disk) are passed directly through to prettier. 
 
 ```bash
-prettier-markdown --single-quote --trailing-comma es5 "docs/**/*.md" "other-docs/**/*.md" "README.md"
+prettier-markdown "src/**/*.md" "README.md" --single-quote --trailing-comma es5
 ```
 
 ### Programatically
@@ -30,13 +30,13 @@ Usage is fairly simple. An array of markdown files are passed, as well as any pr
 const path = require('path');
 const { prettierMarkdown } = require('@dschau/prettier-markdown');
 
-prettierMarkdown([
-  'README.md',
-  'blog/posts/2017-01-01-hello-world/index.md'
-].map(file => path.join(process.cwd(), file)));
-  .then(files => {
-    // array of files that were written
-  });
+prettierMarkdown(
+  ['README.md', 'blog/posts/2017-01-01-hello-world/index.md'].map(file =>
+    path.join(process.cwd(), file)
+  )
+).then(files => {
+  // array of files that were written
+});
 
 ```
 

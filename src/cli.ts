@@ -6,7 +6,15 @@ import * as figures from 'figures';
 
 import { prettierMarkdown } from './';
 
-const { _: files, dry, dryRun, ...prettierOpts } = yargs.argv;
+const { $0, _: files, dry, dryRun, ...opts } = yargs.argv;
+
+const prettierOpts = Object.keys(opts)
+  .reduce((camelCaseOpts, name) => {
+    if (name.indexOf('-') === -1) {
+      camelCaseOpts[name] = opts[name];
+    }
+    return camelCaseOpts;
+  }, {});
 
 prettierMarkdown(
   [].concat.apply(

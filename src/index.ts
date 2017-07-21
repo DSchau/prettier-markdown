@@ -28,13 +28,18 @@ export async function prettierMarkdown(
     })
   ).then(nodes => {
     return (nodes as [string, any][]).reduce((filtered, [file, ast]) => {
+      let touched = false;
       visit(ast, 'code', node => {
         const lang = (node.lang || '').split('{').shift();
         if (supported.includes(lang)) {
+          touched = true;
           node.value = prettier.format(node.value, prettierOptions);
-          filtered.push([file, remark.stringify(ast)]);
         }
       });
+
+      if (touched) {
+        filtered.push([file, remark.stringify(ast)]);
+      }
 
       return filtered;
     }, []);
