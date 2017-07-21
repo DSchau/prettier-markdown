@@ -1,8 +1,18 @@
 # prettier-markdown
 
+[![Build Status](https://travis-ci.org/DSchau/prettier-markdown.svg?branch=master)](https://travis-ci.org/DSchau/prettier-markdown)
+
 A simple utility and CLI to run [prettier][prettier] on code blocks within Markdown, leaving any non-code blocks untouched.
 
 Currently works on _both_ TypeScript and JavaScript snippets
+
+## Install
+
+```bash
+yarn global add @dschau/prettier-markdown
+```
+
+## Usage
 
 For instance, given the following markdown snippet
 
@@ -52,14 +62,6 @@ export default function List({ items, className = "", children }) {
 }
 ```
 </pre>
-
-## Install
-
-```bash
-yarn global add @dschau/prettier-markdown
-```
-
-## Usage
 
 ### CLI
 
