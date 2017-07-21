@@ -30,6 +30,18 @@ test('it makes multiple JavaScript snippets prettier', async () => {
   });
 });
 
+test('it can handle front matter', async () => {
+  const prettierFiles = await prettierMarkdown(
+    getFiles('__fixtures__/front-matter.md'),
+    {},
+    { dry: true }
+  );
+
+  prettierFiles.forEach(([file, content]) => {
+    expect(content).toMatchSnapshot();
+  });
+});
+
 test('it makes a simple JSX snippet prettier', async () => {
   const prettierFiles = await prettierMarkdown(
     getFiles('__fixtures__/react.md'),
