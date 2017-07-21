@@ -66,7 +66,7 @@ yarn global add @dschau/prettier-markdown
 Command line usage is simple. All options (besides `--dry`, which will not write files to disk) are passed directly through to prettier. 
 
 ```bash
-prettier-markdown "src/**/*.md" "README.md" --single-quote --trailing-comma es5
+prettier-markdown src/**/*.md README.md --single-quote --trailing-comma es5
 ```
 
 ### Programatically
