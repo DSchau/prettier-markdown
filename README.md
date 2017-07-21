@@ -6,7 +6,7 @@ Currently works on _both_ TypeScript and JavaScript snippets
 
 For instance, given the following markdown snippet
 
-<code></pre>
+<pre lang="markdown">
 Look at this (bad) code block
 
 ```javascript
@@ -31,9 +31,9 @@ className  = '',
 );
 }
 ```
-</code></pre>
+</pre>
 
-<code><pre>
+<pre lang="markdown">
 Look at this (good) code block
 
 ```javascript
@@ -49,7 +49,7 @@ export default function List({ items, className = "", children }) {
   );
 }
 ```
-</code></pre>
+</pre>
 
 ## Install
 
@@ -89,13 +89,13 @@ prettierMarkdown(
 
 Note that line highlights (e.g. like the below) are kept intact _and_ the block is still prettified!
 
-<code><pre>
+<pre lang="markdown">
 ```javascript {1-2}
 const a =   'b';
 const b =   'c';
 
   alert('hello world');
 ```
-</code></pre>
+</pre>
 
 [prettier]: https://github.com/prettier/prettier
