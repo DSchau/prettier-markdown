@@ -1,13 +1,11 @@
 import * as Remark from 'remark';
-import * as fs from 'mz/fs';
+import * as fs from 'fs-extra';
 import * as visit from 'unist-util-visit';
-import * as prettier from 'prettier';
 
 import { IProgramOptions } from './interfaces/program-opts';
+import { prettifyCode } from './prettify-code';
 
-const supported = ['javascript', 'typescript'];
-
-const prettifyCode = ({
+const prettifyNodes = ({
   remark,
   options
 }) => {
@@ -15,10 +13,11 @@ const prettifyCode = ({
     return (nodes as [string, string, any][]).reduce((filtered, [file, content, ast]) => {
       let updated = false;
       visit(ast, 'code', node => {
-        const lang = (node.lang || '').split('{').shift();
-        if (supported.includes(lang)) {
+        const lang = (node.lang || '').split('{').shift().trim();
+        const prettified = prettifyCode(node.value, lang, options);
+        if (prettified !== node.value) {
           updated = true;
-          content = content.split(node.value).join(prettier.format(node.value, options));
+          content = content.split(node.value).join(prettified);
         }
       });
 
@@ -33,7 +32,7 @@ const prettifyCode = ({
 
 export async function prettierMarkdown(
   files,
-  options = {},
+  options,
   programOptions: IProgramOptions = {}
 ) {
   const remark = new Remark().data('settings', {
@@ -48,7 +47,7 @@ export async function prettierMarkdown(
         .readFile(file, 'utf8')
         .then(content => [file, content, remark.parse(content)]);
     })
-  ).then(prettifyCode({
+  ).then(prettifyNodes({
     remark,
     options
   }));
