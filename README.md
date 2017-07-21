@@ -18,16 +18,16 @@ className  = '',
     children
 } ) {
   return (
-  <ul className={className}>
+  &lt;ul className={className}&gt;
     {
       items
-    .map(item => {
+    .map(item =&gt; {
       return (
-      <li key={item.id}>{item.content}</li>
+      &lt;li key={item.id}&gt;{item.content}&lt;/li&gt;
       )
     })
     }
-</ul>
+&lt;/ul&gt;
 );
 }
 ```
@@ -41,11 +41,11 @@ import React from "react";
 
 export default function List({ items, className = "", children }) {
   return (
-    <ul className={className}>
-      {items.map(item => {
-          return <li key={item.id}>{item.content}</li>;
+    &lt;ul className={className}&gt;
+      {items.map(item =&gt; {
+          return &lt;li key={item.id}&gt;{item.content}&lt;/li&gt;;
         })}
-    </ul>
+    &lt;/ul&gt;
   );
 }
 ```
