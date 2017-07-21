@@ -11,6 +11,7 @@ prettierMarkdown(
 });
 
 ```
+
 ```javascript{1-2}
 const a =   'b';
  const b =   'c';

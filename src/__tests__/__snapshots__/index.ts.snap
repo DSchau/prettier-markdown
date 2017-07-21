@@ -614,6 +614,38 @@ prettierMarkdown(
 
 
 \`\`\`
+
+\`\`\`javascript{1-2}
+const a = \\"b\\";
+const b = \\"c\\";
+
+alert(\\"hello world\\");
+
+\`\`\`
+"
+`;
+
+exports[`it prettifies each instance (even the same content) 1`] = `
+"\`\`\`javascript{1-2}
+const a = \\"b\\";
+const b = \\"c\\";
+
+alert(\\"hello world\\");
+
+\`\`\`
+
+Content
+
+\`\`\`javascript{1-2}
+const a = \\"b\\";
+const b = \\"c\\";
+
+alert(\\"hello world\\");
+
+\`\`\`
+
+Content
+
 \`\`\`javascript{1-2}
 const a = \\"b\\";
 const b = \\"c\\";

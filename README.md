@@ -108,7 +108,7 @@ const b =   'c';
 
 #### Frontmatter
 
-Frontmatter, i.e. in a [Gastby][gatsby] blog post, is preserved and formatted!
+Frontmatter, i.e. in a [Gastby][gatsby] blog post, is preserved as authored.
 
 <pre lang="markdown">
 ---
@@ -119,7 +119,9 @@ tags:
 ---
 
 ```javascript
-// this content will be prettified, and the frontmatter will be preserved!
+// this will be prettified
+var a =    'a';
+
 ```
 </pre>
 

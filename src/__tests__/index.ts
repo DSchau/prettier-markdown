@@ -18,6 +18,18 @@ test('it makes a simple JavaScript snippet prettier', async () => {
   });
 });
 
+test('it prettifies each instance (even the same content)', async () => {
+  const prettierFiles = await prettierMarkdown(
+    getFiles('__fixtures__/javascript-multiple-same.md'),
+    {},
+    { dry: true }
+  );
+
+  prettierFiles.forEach(([file, content]) => {
+    expect(content).toMatchSnapshot();
+  });
+});
+
 test('it makes multiple JavaScript snippets prettier', async () => {
   const prettierFiles = await prettierMarkdown(
     getFiles('__fixtures__/javascript-multiple.md'),
