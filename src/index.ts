@@ -13,16 +13,17 @@ const prettifyCode = ({
 }) => {
   return nodes => {
     return (nodes as [string, string, any][]).reduce((filtered, [file, content, ast]) => {
-      let updated = content;
+      let updated = false;
       visit(ast, 'code', node => {
         const lang = (node.lang || '').split('{').shift();
         if (supported.includes(lang)) {
-          updated = updated.split(node.value).join(prettier.format(node.value, options));
+          updated = true;
+          content = content.split(node.value).join(prettier.format(node.value, options));
         }
       });
 
-      if (updated !== content) {
-        filtered.push([file, updated]);
+      if (updated) {
+        filtered.push([file, content]);
       }
 
       return filtered;
