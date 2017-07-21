@@ -87,6 +87,10 @@ prettierMarkdown(
 
 ```
 
+### Advanced Functionality
+
+#### Line highlights
+
 Note that line highlights (e.g. like the below) are kept intact _and_ the block is still prettified!
 
 <pre lang="markdown">
@@ -98,4 +102,22 @@ const b =   'c';
 ```
 </pre>
 
+#### Frontmatter
+
+Frontmatter, i.e. in a [Gastby][gatsby] blog post, is preserved and formatted!
+
+<pre lang="markdown">
+---
+title: Hello World
+tags:
+  - Some Tag
+  - Another Tag
+---
+
+```javascript
+// this content will be prettified, and the frontmatter will be preserved!
+```
+</pre>
+
 [prettier]: https://github.com/prettier/prettier
+[gatsby]: https://gatsbyjs.org
