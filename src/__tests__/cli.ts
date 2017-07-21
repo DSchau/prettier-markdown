@@ -13,11 +13,6 @@ import * as globby from 'globby';
 
 import { _spy, prettierMarkdown } from '../index';
 
-const requireUncached = name => {
-  delete require.cache[require.resolve(name)]
-  return require(name)
-}
-
 const runCli = () => {
   require('../cli');
 };
