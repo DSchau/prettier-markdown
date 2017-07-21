@@ -1,6 +1,6 @@
 {
   "name": "@dschau/prettier-markdown",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "main": "index.js",
   "bin": {
     "prettier-markdown": "cli.js"
@@ -23,7 +23,6 @@
     "test:watch": "npm run test -- --watch"
   },
   "dependencies": {
-    "@types/yargs": "^8.0.1",
     "figures": "^2.0.0",
     "fs-extra": "^4.0.0",
     "globby": "~6.1.0",
@@ -35,6 +34,7 @@
   "devDependencies": {
     "@types/jest": "^20.0.4",
     "@types/node": "^8.0.14",
+    "@types/yargs": "^8.0.1",
     "del-cli": "^1.1.0",
     "jest": "^20.0.4",
     "ts-jest": "^20.0.7",
