@@ -24,7 +24,8 @@ prettier-markdown --single-quote --trailing-comma es5 "docs/**/*.md" "other-docs
 
 #### `prettierMarkdown(files, prettierOpts = {}, programOpts = {})`
 
-Usage is fa
+Usage is fairly simple. An array of markdown files are passed, as well as any prettier options, and prettier is run on the specified files.
+
 ```javascript
 const path = require('path');
 const { prettierMarkdown } = require('@dschau/prettier-markdown');
