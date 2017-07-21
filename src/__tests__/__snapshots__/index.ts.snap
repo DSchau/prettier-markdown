@@ -529,6 +529,90 @@ Now go build something great.
 "
 `;
 
+exports[`it makes CSS prettier 1`] = `
+"\`\`\`css
+p {
+  color: red;
+}
+
+body {
+  font-family: 'Georgia', sans-serif;
+}
+
+
+\`\`\`
+"
+`;
+
+exports[`it makes GraphQL prettier 1`] = `
+"\`\`\`graphql
+{
+  empireHero: hero(episode: EMPIRE) {
+    name
+  }
+  jediHero: hero(episode: JEDI) {
+    name
+  }
+}
+
+\`\`\`
+"
+`;
+
+exports[`it makes JSON prettier 1`] = `
+"\`\`\`json
+{
+  \\"asdf\\": \\"asdf\\",
+
+  \\"value\\": true,
+
+  \\"other_value\\": false
+}
+
+\`\`\`
+"
+`;
+
+exports[`it makes LESS prettier 1`] = `
+"\`\`\`less
+@base: #f938ab;
+
+.box-shadow(@style, @c) when (iscolor(@c)) {
+  -webkit-box-shadow: @style @c;
+  box-shadow: @style @c;
+}
+.box-shadow(@style, @alpha: 50%) when (isnumber(@alpha)) {
+  .box-shadow(@style, rgba(0, 0, 0, @alpha));
+}
+.box {
+  color: saturate(@base, 5%);
+  border-color: lighten(@base, 30%);
+  div {
+    .box-shadow(0 0 5px, 30%);
+  }
+}
+
+\`\`\`
+"
+`;
+
+exports[`it makes SCSS prettier 1`] = `
+"\`\`\`scss
+$color: red;
+
+@mixin generateContent( $otherColor: $color ) {
+  background-color: $otherColor;
+}
+
+body {
+  @include generateContent();
+}
+
+
+\`\`\`
+"
+`;
+
 exports[`it makes a simple JSX snippet prettier 1`] = `
 "\`\`\`javascript
 import React from \\"react\\";
@@ -584,7 +668,7 @@ import * as React from \\"react\\";
 const name: string = \\"Hello World  \\";
 
 interface IProps {
-  name: string
+  name: string;
 }
 
 export default function TypeScriptComponent({ otherName: string = name }) {
