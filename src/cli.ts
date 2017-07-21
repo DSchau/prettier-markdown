@@ -22,7 +22,7 @@ prettierMarkdown(
     files.map(file => {
       const filePath = path.join(process.cwd(), file);
       if (file.indexOf('*') > -1) {
-        return globby(filePath);
+        return globby.sync(filePath);
       }
       return filePath;
     })
