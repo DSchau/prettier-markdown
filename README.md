@@ -33,6 +33,8 @@ className  = '',
 ```
 </pre>
 
+this utility will parse the code blocks, and apply prettier on the content!
+
 <pre lang="markdown">
 Look at this (good) code block
 
