@@ -9,7 +9,7 @@ For instance, given the following markdown snippet
 ```markdown
 Look at this (bad) code block
 
-``````javascript
+`` ` ```` ` ```` ` ``javascript
 import React from "react";
 
 export default function List( {
@@ -30,13 +30,13 @@ className  = '',
 </ul>
 );
 }
-``````
+`` ` ```` ` ```` ` ``
 ```
 
 ```markdown
 Look at this (code) code block
 
-``````javascript
+`` ` ```` ` ```` ` ``javascript
 import React from "react";
 
 export default function List({ items, className = "", children }) {
@@ -48,7 +48,7 @@ export default function List({ items, className = "", children }) {
     </ul>
   );
 }
-``````
+`` ` ```` ` ```` ` ``
 ```
 
 ## Install
@@ -91,12 +91,12 @@ Note that line highlights (e.g. like the below) are kept intact _and_ the block 
 
 ```markdown
 
-``````javascript{1-2}
+`` ` ```` ` ```` ` ``javascript{1-2}
 const a =   'b';
  const b =   'c';
 
   alert('hello world');
-``````
+`` ` ```` ` ```` ` ``
 ```
 
 [prettier]: https://github.com/prettier/prettier
