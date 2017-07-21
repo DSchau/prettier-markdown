@@ -55,10 +55,11 @@ export async function prettierMarkdown(
 
   if (!programOptions.dry) {
     await Promise.all(
-      markdownFiles.map(([file, content]) => fs.writeFile(content))
+      markdownFiles.map(([file, content]) => {
+        return fs.writeFile(file, content, 'utf8');
+      })
     );
   }
 
-  return markdownFiles
-    .map(([file, content]) => [file, content])
+  return markdownFiles;
 }
