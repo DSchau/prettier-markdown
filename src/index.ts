@@ -2,7 +2,6 @@ import * as Remark from 'remark';
 import * as fs from 'mz/fs';
 import * as visit from 'unist-util-visit';
 import * as prettier from 'prettier';
-import * as matter from 'gray-matter';
 
 import { IProgramOptions } from './interfaces/program-opts';
 
@@ -13,19 +12,17 @@ const prettifyCode = ({
   options
 }) => {
   return nodes => {
-    return (nodes as [string, any][]).reduce((filtered, [file, data]) => {
-      let touched = false;
-      visit(data.content, 'code', node => {
+    return (nodes as [string, string, any][]).reduce((filtered, [file, content, ast]) => {
+      let updated = content;
+      visit(ast, 'code', node => {
         const lang = (node.lang || '').split('{').shift();
         if (supported.includes(lang)) {
-          touched = true;
-          node.value = prettier.format(node.value, options);
+          updated = updated.split(node.value).join(prettier.format(node.value, options));
         }
       });
 
-      if (touched) {
-        data.content = remark.stringify(data.content);
-        filtered.push([file, data]);
+      if (updated !== content) {
+        filtered.push([file, updated]);
       }
 
       return filtered;
@@ -48,11 +45,7 @@ export async function prettierMarkdown(
     files.map(file => {
       return fs
         .readFile(file, 'utf8')
-        .then(content => {
-          const data = matter(content);
-          data.content = remark.parse(data.content);
-          return [file, data];
-        });
+        .then(content => [file, content, remark.parse(content)]);
     })
   ).then(prettifyCode({
     remark,
@@ -61,12 +54,10 @@ export async function prettierMarkdown(
 
   if (!programOptions.dry) {
     await Promise.all(
-      markdownFiles.map(([file, data]) => {
-        return fs.writeFile(file, data.stringify());
-      })
+      markdownFiles.map(([file, content]) => fs.writeFile(content))
     );
   }
 
   return markdownFiles
-    .map(([file, data]) => [file, data.stringify()])
+    .map(([file, content]) => [file, content])
 }

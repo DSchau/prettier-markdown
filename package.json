@@ -1,6 +1,6 @@
 {
   "name": "@dschau/prettier-markdown",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "index.js",
   "bin": {
     "prettier-markdown": "cli.js"
@@ -26,7 +26,6 @@
     "@types/yargs": "^8.0.1",
     "figures": "^2.0.0",
     "globby": "~6.1.0",
-    "gray-matter": "^3.0.2",
     "mz": "~2.6.0",
     "prettier": "^1.5.3",
     "remark": "~8.0.0",
