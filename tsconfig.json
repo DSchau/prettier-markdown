@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "target": "es2017",
+    "rootDir": "src",
+    "outDir": "dist"
+  },
+  "exclude": [
+    "src/__tests__",
+    "src/interfaces",
+    "node_modules"
+  ]
+}

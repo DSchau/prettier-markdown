@@ -1,0 +1,43 @@
+{
+  "name": "@dschau/prettier-markdown",
+  "version": "1.0.0-rc.0",
+  "main": "index.js",
+  "bin": {
+    "prettier-markdown": "cli.js"
+  },
+  "license": "MIT",
+  "author": "Dustin Schau <dustinschau@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dschau/prettier-markdown"
+  },
+  "scripts": {
+    "prebuild": "npm run clean",
+    "build": "tsc",
+    "build:publish": "npm run build && cd dist && npm run copy && npm publish --access public",
+    "postbuild:publish": "cd ../",
+    "clean": "del-cli \"dist/**/*\"",
+    "copy": "cp ./package.json dist/package.json & cp ./.gitignore dist/.gitignore & cp ./README.md dist/README.md",
+    "format": "prettier --single-quote --write \"src/**/*.ts\"",
+    "test": "jest",
+    "test:watch": "npm run test -- --watch"
+  },
+  "dependencies": {
+    "@types/yargs": "^8.0.1",
+    "figures": "^2.0.0",
+    "globby": "~6.1.0",
+    "mz": "~2.6.0",
+    "prettier": "^1.5.3",
+    "remark": "~8.0.0",
+    "unist-util-visit": "^1.1.3",
+    "yargs": "^8.0.2"
+  },
+  "devDependencies": {
+    "@types/jest": "^20.0.4",
+    "@types/node": "^8.0.14",
+    "del-cli": "^1.1.0",
+    "jest": "^20.0.4",
+    "ts-jest": "^20.0.7",
+    "typescript": "~2.4.2"
+  }
+}
