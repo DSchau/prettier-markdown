@@ -4,6 +4,53 @@ A simple utility and CLI to run [prettier][prettier] on code blocks within Markd
 
 Currently works on _both_ TypeScript and JavaScript snippets
 
+For instance, given the following markdown snippet
+
+```markdown
+Look at this (bad) code block
+
+``````javascript
+import React from "react";
+
+export default function List( {
+  items,
+className  = '',
+    children
+} ) {
+  return (
+  <ul className={className}>
+    {
+      items
+    .map(item => {
+      return (
+      <li key={item.id}>{item.content}</li>
+      )
+    })
+    }
+</ul>
+);
+}
+``````
+```
+
+```markdown
+Look at this (code) code block
+
+``````javascript
+import React from "react";
+
+export default function List({ items, className = "", children }) {
+  return (
+    <ul className={className}>
+      {items.map(item => {
+          return <li key={item.id}>{item.content}</li>;
+        })}
+    </ul>
+  );
+}
+``````
+```
+
 ## Install
 
 ```bash
@@ -42,11 +89,14 @@ prettierMarkdown(
 
 Note that line highlights (e.g. like the below) are kept intact _and_ the block is still prettified!
 
-```javascript{1-2}
+```markdown
+
+``````javascript{1-2}
 const a =   'b';
  const b =   'c';
 
   alert('hello world');
+``````
 ```
 
 [prettier]: https://github.com/prettier/prettier
