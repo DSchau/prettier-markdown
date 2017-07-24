@@ -1,6 +1,6 @@
 # prettier-markdown
 
-[![Build Status](https://travis-ci.org/DSchau/prettier-markdown.svg?branch=master)](https://travis-ci.org/DSchau/prettier-markdown)
+[![Build Status](https://travis-ci.org/DSchau/prettier-markdown.svg?branch=master)](https://travis-ci.org/DSchau/prettier-markdown) [![NPM version](https://img.shields.io/npm/v/@dschau/prettier-markdown.svg)](https://www.npmjs.com/package/@dschau/prettier-markdown)
 
 A simple utility and CLI to run [prettier][prettier] on code blocks within Markdown, leaving any non-code blocks untouched.
 
