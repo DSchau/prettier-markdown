@@ -1,8 +1,5 @@
 import * as prettier from 'prettier';
 
-/*
- * https://github.com/rposborne/prettier-markdown-codeblocks/blob/6e04228a4d6b476b0349861b706c36cbd02555b3/lib/prettier-markdown-codeblocks.js#L118-L147
- */
 export const prettifyCode = (code, language, options = {}) => {
   if (!code.trim().length) {
     return code;

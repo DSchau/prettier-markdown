@@ -33,11 +33,13 @@ prettierMarkdown(
   }
 )
   .then(mdFiles => {
-    const len = mdFiles.length;
+    const updatedMdFiles = mdFiles
+      .filter(([file, content, updated]) => updated);
+    const len = updatedMdFiles.length;
     if (len > 0) {
       console.log(`Prettified ${len} file${len === 1 ? '' : 's'}`.trim());
     }
-    mdFiles.forEach(([file]) => {
+    updatedMdFiles.forEach(([file]) => {
       console.log(figures(`✔︎ Updated ${file}`));
     });
   })

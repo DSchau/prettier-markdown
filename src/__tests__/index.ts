@@ -1,19 +1,24 @@
 import * as path from 'path';
+import * as fs from 'fs-extra';
 
-import { prettierMarkdown } from '../';
+import { prettierMarkdown, prettierMarkdownString } from '../';
 
 const getFiles = files => {
   return [].concat(files).map(file => path.resolve(file));
 };
 
-const confirmSnapshot = async files => {
-  const prettierFiles = await prettierMarkdown(
+const format = async files => {
+  return await prettierMarkdown(
     getFiles(files),
     {},
     { dry: true }
   );
+};
 
-  prettierFiles.forEach(([file, content]) => {
+const confirmSnapshot = async files => {
+  const prettified = await format(files);
+
+  prettified.forEach(([file, content]) => {
     expect(content).toMatchSnapshot();
   });
 };
@@ -44,6 +49,22 @@ test('it makes a simple TypeScript snippet prettier', async () => {
 
 test('it can handle line highlighting', async () => {
   await confirmSnapshot('__fixtures__/typescript-with-highlighting.md');
+});
+
+test('it leaves file as-is on additional run(s)', async () => {
+  const file = await fs.readFile(path.resolve('__fixtures__/javascript.md'), 'utf8');
+
+  const prettified = prettierMarkdownString(file);
+
+  expect(prettierMarkdownString(prettified)).toEqual(prettified);
+});
+
+test('it leaves end of line characters as is', async () => {
+  const file = await fs.readFile(path.resolve('__fixtures__/javascript-lines.md'), 'utf8');
+
+  const prettified = prettierMarkdownString(file);
+
+  expect(prettified.match(/\n/g).length).toBe(file.match(/\n/g).length);
 });
 
 [

@@ -11,7 +11,6 @@ Some content
 \`\`\`javascript
 var a = \\"a\\";
 
-
 \`\`\`
 "
 `;
@@ -30,7 +29,6 @@ export default class HelloWorld implements OnInit {
     console.log(\\"on init\\");
   }
 }
-
 \`\`\`
 "
 `;
@@ -98,7 +96,6 @@ module.exports = {
   },
   plugins: [\\"gatsby-plugin-catch-links\\", \\"gatsby-plugin-react-helmet\\"]
 };
-
 \`\`\`
 
 Without any additional work besides a \`yarn install\` and editing a config file, we now have the ability to edit our site's head tags, as well as implement a single page app feel without reloads. Now let's enhance the base functionality by implementing a source plugin which can load blog posts from our local file system.
@@ -128,7 +125,6 @@ module.exports = {
     }
   ]
 };
-
 \`\`\`
 
 Some explanation will be helpful here! An \`options\` object can be passed to a plugin, and we're passing the filesystem \`path\` (i.e. where our Markdown files will be located), and then a \`name\` for the source files. Now that Gatsby knows about our source files, we can begin applying some useful transformers to convert those files into usable data!
@@ -171,7 +167,6 @@ module.exports = {
     }
   ]
 };
-
 \`\`\`
 
 Whew! Seems like a lot of set up, but collectively these plugins are going to super charge Gatsby, and give us an incredibly powerful (yet relatively simple!) development environment. We have one more set up step and it's an easy one. We're simply going to create a Markdown file that will contain the content of our first blog post. Let's get to it.
@@ -230,7 +225,6 @@ export default function Template({
     </div>
   );
 }
-
 \`\`\`
 
 Whoa, neat! This React component will be rendered to a static HTML string (for each route/blog post we define), which will serve as the basis of our routing/navigation for our blog.
@@ -277,7 +271,6 @@ export const pageQuery = graphql\`
     }
   }
 \`;
-
 \`\`\`
 
 If you're not familar with GraphQL, this may seem slightly confusing, but we can break down what's going down here piece by piece.
@@ -306,7 +299,6 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
 
   const blogPostTemplate = path.resolve(\`src/templates/blog-post.js\`);
 };
-
 \`\`\`
 
 Nothing super complex yet! We're using the \`createPages\` API (which Gatsby will call at build time with injected parameters). We're also grabbing the _path_ to our blogPostTemplate we created earlier. Finally, we're using the \`createPage\` action creator/function made available in boundActionCreators. Gatsby uses Redux internally to manage its state, and \`boundActionCreators\` are simply the exposed action creators of Gatsby, of which \`createPage\` is one of the action creators! For the full list of exposed action creators, check out [Gatsby's documentation][gatsby-bound-action-creators]. We can now construct the GraphQL query, which will fetch all of our Markdown posts.
@@ -345,7 +337,6 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
     }
   });
 };
-
 \`\`\`
 
 We're using GraphQL to get all Markdown nodes and making them available under the \`allMarkdownRemark\` GraphQL property. Each exposed property (on \`node\`) is made available for querying against. We're effectively seeding a GraphQL \\"database\\" that we can then query against via page-level GraphQL queries. One note here is that the \`exports.createPages\` API expects a Promise to be returned, so it works seamlessly with the \`graphql\` function, which returns a Promise (although note a callback API is also available if that's more your thing).
@@ -396,7 +387,6 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
     });
   });
 };
-
 \`\`\`
 
 We've now tied into the Promise chain exposed by the \`graphql\` query. The actual posts are available via the path \`result.data.allMarkdownRemark.edges\`. Each edge contains an internal node, and this node holds the useful data that we will use to construct a page with Gatsby. Our GraphQL \\"shape\\" is directly reflected in this data object, so each property we pulled from that query will be available when we are querying in our GraphQL blog post template.
@@ -466,7 +456,6 @@ export const pageQuery = graphql\`
     }
   }
 \`;
-
 \`\`\`
 
 OK! So we've followed a similar approach to our blog post template, so this should hopefully seem pretty familiar. Once more we're exporting \`pageQuery\` which contains a GraphQL query. Note that we're pulling a slightly different data set, specifically we are pulling an \`excerpt\` of 250 characters rather than the full HTML, as well as we are formatting the pulled date with a format string! GraphQL is awesome.
@@ -539,7 +528,6 @@ body {
   font-family: 'Georgia', sans-serif;
 }
 
-
 \`\`\`
 "
 `;
@@ -554,7 +542,6 @@ exports[`it makes GraphQL prettier 1`] = `
     name
   }
 }
-
 \`\`\`
 "
 `;
@@ -568,7 +555,6 @@ exports[`it makes JSON prettier 1`] = `
 
   \\"other_value\\": false
 }
-
 \`\`\`
 "
 `;
@@ -591,7 +577,6 @@ exports[`it makes LESS prettier 1`] = `
     .box-shadow(0 0 5px, 30%);
   }
 }
-
 \`\`\`
 "
 `;
@@ -607,7 +592,6 @@ $color: red;
 body {
   @include generateContent();
 }
-
 
 \`\`\`
 "
@@ -645,7 +629,6 @@ export default function HelloWorld({
     </div>
   );
 }
-
 \`\`\`
 "
 `;
@@ -656,7 +639,6 @@ var a = \\"i am ugly\\";
 var b = \\"super ugly\\";
 
 alert(\\"sup\\");
-
 \`\`\`
 "
 `;
@@ -678,7 +660,6 @@ export default function TypeScriptComponent({ otherName: string = name }) {
     </h1>
   );
 }
-
 \`\`\`
 "
 `;
@@ -696,7 +677,6 @@ prettierMarkdown(
   // array of files that were written
 });
 
-
 \`\`\`
 
 \`\`\`javascript{1-2}
@@ -704,7 +684,6 @@ const a = \\"b\\";
 const b = \\"c\\";
 
 alert(\\"hello world\\");
-
 \`\`\`
 "
 `;
@@ -715,7 +694,6 @@ const a = \\"b\\";
 const b = \\"c\\";
 
 alert(\\"hello world\\");
-
 \`\`\`
 
 Content
@@ -725,7 +703,6 @@ const a = \\"b\\";
 const b = \\"c\\";
 
 alert(\\"hello world\\");
-
 \`\`\`
 
 Content
@@ -735,7 +712,6 @@ const a = \\"b\\";
 const b = \\"c\\";
 
 alert(\\"hello world\\");
-
 \`\`\`
 "
 `;

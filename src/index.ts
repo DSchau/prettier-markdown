@@ -1,31 +1,24 @@
-import * as Remark from 'remark';
 import * as fs from 'fs-extra';
 import * as visit from 'unist-util-visit';
 
 import { IProgramOptions } from './interfaces/program-opts';
 import { prettifyCode } from './prettify-code';
+import { remark } from './remark';
 
-const prettifyNodes = ({
-  remark,
-  options
-}) => {
+export const prettierMarkdownAST = options => {
   return nodes => {
-    return (nodes as [string, string, any][]).reduce((filtered, [file, content, ast]) => {
+    return (nodes as [string, string, any][]).map(([file, content, ast]) => {
       let updated = false;
       visit(ast, 'code', node => {
         const lang = (node.lang || '').split('{').shift().trim();
-        const prettified = prettifyCode(node.value, lang, options);
+        const prettified = prettifyCode(node.value, lang, options).trim();
         if (prettified !== node.value) {
           updated = true;
           content = content.split(node.value).join(prettified);
         }
       });
 
-      if (updated) {
-        filtered.push([file, content]);
-      }
-
-      return filtered;
+      return [file, content, updated];
     }, []);
   };
 };
@@ -35,22 +28,13 @@ export async function prettierMarkdown(
   options,
   programOptions: IProgramOptions = {}
 ) {
-  const remark = new Remark().data('settings', {
-    commonmark: true,
-    footnotes: true,
-    pedantic: true
-  });
-
   const markdownFiles = await Promise.all(
     files.map(file => {
       return fs
         .readFile(file, 'utf8')
         .then(content => [file, content, remark.parse(content)]);
     })
-  ).then(prettifyNodes({
-    remark,
-    options
-  }));
+  ).then(prettierMarkdownAST(options));
 
   if (!programOptions.dry) {
     await Promise.all(
@@ -61,4 +45,23 @@ export async function prettierMarkdown(
   }
 
   return markdownFiles;
+}
+
+export function prettierMarkdownString(
+  md,
+  options?
+) {
+  const prettified = [].concat(md)
+    .map(content => [content, remark.parse(content)])
+    .map(([content, ast]) => {
+      return prettierMarkdownAST(options)([['', content, ast]])
+        .map(([, updatedContent]) => updatedContent);
+    })
+    .map(content => content.pop());
+  
+  if (md instanceof Array) {
+    return prettified;
+  }
+
+  return prettified.pop();
 }
