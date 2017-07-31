@@ -22,54 +22,7 @@ yarn global add @dschau/prettier-markdown
 
 ## Example
 
-For instance, given the following markdown snippet
-
-<pre lang="markdown">
-Look at this (bad) code block
-
-```javascript
-import React from "react";
-
-export default function List( {
-  items,
-className  = '',
-    children
-} ) {
-  return (
-  &lt;ul className={className}&gt;
-    {
-      items
-    .map(item =&gt; {
-      return (
-      &lt;li key={item.id}&gt;{item.content}&lt;/li&gt;
-      )
-    })
-    }
-&lt;/ul&gt;
-);
-}
-```
-</pre>
-
-this utility will parse the code blocks, and apply prettier on the content!
-
-<pre lang="markdown">
-Look at this (good) code block
-
-```javascript
-import React from "react";
-
-export default function List({ items, className = "", children }) {
-  return (
-    &lt;ul className={className}&gt;
-      {items.map(item =&gt; {
-          return &lt;li key={item.id}&gt;{item.content}&lt;/li&gt;;
-        })}
-    &lt;/ul&gt;
-  );
-}
-```
-</pre>
+![Prettier Markdown](demo/sample.gif)
 
 ## Usage
 
