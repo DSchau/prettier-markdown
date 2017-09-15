@@ -15,7 +15,8 @@
     "prebuild": "npm run clean",
     "build": "tsc",
     "clean": "del-cli \"dist/**/*\"",
-    "copy": "cp ./package.json dist/package.json & cp ./.gitignore dist/.gitignore & cp ./README.md dist/README.md",
+    "copy": "cp ./.gitignore dist/.gitignore & cp ./README.md dist/README.md",
+    "deploy": "bump-version",
     "format": "prettier --single-quote --write \"src/**/*.ts\"",
     "test": "jest",
     "test:watch": "npm run test -- --watch"
@@ -30,6 +31,7 @@
     "yargs": "^8.0.2"
   },
   "devDependencies": {
+    "@dschau/bump-version-ci": "^1.0.2",
     "@types/jest": "^20.0.4",
     "@types/node": "^8.0.14",
     "@types/yargs": "^8.0.1",
