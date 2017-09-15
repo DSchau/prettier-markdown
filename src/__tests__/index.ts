@@ -83,3 +83,8 @@ test('it leaves end of line characters as is', async () => {
 test('it handles a complex file', async () => {
   await confirmSnapshot('__fixtures__/kitchen-sink.md');
 });
+
+test('it handles a file with malformed syntax', async () => {
+  expect(async () => await format('__fixtures__/file-with-errors.md')).not.toThrow();
+});
+
