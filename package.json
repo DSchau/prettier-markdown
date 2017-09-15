@@ -14,8 +14,6 @@
   "scripts": {
     "prebuild": "npm run clean",
     "build": "tsc",
-    "build:publish": "npm run build && cd dist && npm run copy && npm publish --access public",
-    "postbuild:publish": "cd ../",
     "clean": "del-cli \"dist/**/*\"",
     "copy": "cp ./package.json dist/package.json & cp ./.gitignore dist/.gitignore & cp ./README.md dist/README.md",
     "format": "prettier --single-quote --write \"src/**/*.ts\"",

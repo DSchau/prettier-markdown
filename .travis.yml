@@ -1,3 +1,28 @@
 language: node_js
 node_js:
-  - "node"
+  - stable
+
+cache:
+  yarn: true
+
+script: yarn test
+
+before_deploy:
+  - yarn build
+  - yarn copy
+  - cd dist
+deploy:
+  - provider: releases
+    skip_cleanup: true
+    overwrite: true
+    api_key: $GITHUB_TOKEN
+    on:
+      tags: true
+  - provider: npm
+    email: dustinschau@gmail.com
+    api_key: $NPM_API_KEY
+    skip_cleanup: true
+    on:
+      tags: true
+after_deploy:
+  - cd ../
