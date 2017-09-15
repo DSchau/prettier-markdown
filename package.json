@@ -16,7 +16,9 @@
     "build": "tsc",
     "clean": "del-cli \"dist/**/*\"",
     "copy": "cp ./.gitignore dist/.gitignore & cp ./README.md dist/README.md",
+    "predeploy": "npm run build",
     "deploy": "bump-version",
+    "postdeploy": "npm run copy",
     "format": "prettier --single-quote --write \"src/**/*.ts\"",
     "test": "jest",
     "test:watch": "npm run test -- --watch"
