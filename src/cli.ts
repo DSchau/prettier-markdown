@@ -40,7 +40,8 @@ prettierMarkdown(
       console.log(`Prettified ${len} file${len === 1 ? '' : 's'}`.trim());
     }
     updatedMdFiles.forEach(([file]) => {
-      console.log(figures(`✔︎ Updated ${file}`));
+      const normalizedPath = (file as string).replace(process.cwd(), '');
+      console.log(figures(`✔︎ Updated ${normalizedPath}`));
     });
   })
   .catch(err => {
