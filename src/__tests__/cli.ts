@@ -19,16 +19,16 @@ const runCli = () => {
 
 beforeEach(() => {
   (yargs as any).argv = {
-    _: ['__fixtures__/*.md']
+    _: ['__fixtures__/**/*.md']
   };
 });
 
 afterEach(() => {
-  _spy.mockClear();
+  _spy.mockReset();
   (yargs as any).reset();
 });
 
-const files = (globby as any).sync(path.resolve(`__fixtures__/*.md`));
+const files = (globby as any).sync(path.resolve(`__fixtures__/**/*.md`));
 
 test('it runs the CLI', () => {
   runCli();

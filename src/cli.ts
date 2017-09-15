@@ -6,7 +6,7 @@ import * as figures from 'figures';
 
 import { prettierMarkdown } from './';
 
-const { $0, _: files, dry, dryRun, ...opts } = yargs.argv;
+const { $0, _: files, dry, dryRun, exclude = ['node_modules/**/*'], ...opts } = yargs.argv;
 
 const prettierOpts = Object.keys(opts)
   .reduce((camelCaseOpts, name) => {
@@ -17,7 +17,7 @@ const prettierOpts = Object.keys(opts)
   }, {});
 
 prettierMarkdown(
-  [].concat.apply(
+  exclude.map(glob => `!${glob}`).concat.apply(
     [],
     files.map(file => {
       const filePath = path.join(process.cwd(), file);
