@@ -11,7 +11,14 @@ export const prettierMarkdownAST = options => {
       let updated = false;
       visit(ast, 'code', node => {
         const lang = (node.lang || '').split('{').shift().trim();
-        const prettified = prettifyCode(node.value, lang, options).trim();
+        let prettified = node.value;
+        try {
+          prettified = prettifyCode(node.value, lang, options).trim();
+        } catch (e) {
+          const normalizedPath = file.replace(process.cwd(), '');
+          console.warn(`Malformed syntax detected in ${normalizedPath}`);
+          console.warn(e.codeFrame);
+        }
         if (prettified !== node.value) {
           updated = true;
           content = content.split(node.value).join(prettified);

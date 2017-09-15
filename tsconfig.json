@@ -3,6 +3,7 @@
     "module": "commonjs",
     "moduleResolution": "node",
     "target": "es2017",
+    "lib": ["es2015"],
     "rootDir": "src",
     "outDir": "dist"
   },
@@ -10,6 +11,7 @@
     "__mocks__",
     "src/__tests__",
     "src/interfaces",
-    "node_modules"
+    "node_modules",
+    "!node_modules/@types"
   ]
 }
