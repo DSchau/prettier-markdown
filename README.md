@@ -2,6 +2,8 @@
 
 [![Build Status](https://travis-ci.org/DSchau/prettier-markdown.svg?branch=master)](https://travis-ci.org/DSchau/prettier-markdown) [![NPM version](https://img.shields.io/npm/v/@dschau/prettier-markdown.svg)](https://www.npmjs.com/package/@dschau/prettier-markdown)
 
+**Prettier now includes support for prettifying Markdown (including code blocks!), so as such, I'd recommend using the official Prettier instead. See the [release notes](https://github.com/prettier/prettier/releases/tag/1.8.0) for more information**
+
 A simple utility and CLI to run [prettier][prettier] on code blocks within Markdown, leaving any non-code blocks untouched.
 
 Currently works on the following languages (basically everything prettier supports!):
